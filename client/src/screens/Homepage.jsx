@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getActasRequest } from "../api/actas.api";
+import { createActasRequest, getActasRequest } from "../api/actas.api";
 import "../styles/homepage.css";
 
 const Homepage = () => {
@@ -13,6 +13,19 @@ const Homepage = () => {
   const [responsable, setResponsable] = useState("");
   const [id_programa, setIdPrograma] = useState("");
 
+  const submitCreateHandler = (e) => {
+    e.preventDefault();
+    createActasRequest({
+      asunto,
+      descripcion,
+      responsable,
+      fecha,
+      id_programa,
+    });
+    setOpenModal(false);
+    window.location.reload();
+  };
+
   useEffect(() => {
     async function loadActas() {
       const response = await getActasRequest();
@@ -23,7 +36,7 @@ const Homepage = () => {
     loadActas();
   }, []);
 
-  console.log(actas);
+  console.log(id_programa);
 
   return (
     <>
@@ -31,7 +44,12 @@ const Homepage = () => {
         <div className="container-homepage">
           <div className="header-homepage">
             <h2>TABLA DE ACTAS</h2>
-            <button className="button-addactas" onClick={() => setOpenModal(!openModal)} >Crear Actas</button>
+            <button
+              className="button-addactas"
+              onClick={() => setOpenModal(!openModal)}
+            >
+              Crear Actas
+            </button>
           </div>
           <div className="table">
             <table>
@@ -79,7 +97,6 @@ const Homepage = () => {
           </div>
 
           <form action="" className="form_items">
-            
             <div className="input">
               <label htmlFor="">Asunto</label>
               <input
@@ -120,20 +137,18 @@ const Homepage = () => {
               />
             </div>
 
-            <div className="input">
-              <label htmlFor="">Id Programa</label>
-              <input
-                type="number"
-                placeholder=""
-                value={id_programa}
-                onChange={(e) => setIdPrograma(e.target.value)}
-              />
+            <div className="input-select-expense">
+              <select onChange={(e) => setIdPrograma(e.target.value)}>
+                <option value="#">Elige un Programa</option>
+                <option value={1}>Informatica</option>
+                <option value={2}>Ing software</option>
+                <option value={3}>Bacteriologia</option>
+                <option value={4}>Matematicas</option>
+              </select>
             </div>
-
-          
           </form>
           <div className="modal_footer">
-            <button className="btn" >
+            <button className="btn" onClick={submitCreateHandler}>
               <h2>Guardar</h2>
             </button>
           </div>

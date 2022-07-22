@@ -199,3 +199,44 @@ tbody td {
   font-size: 1.2rem;
   width: 30rem;
 }
+
+.input-select-expense {
+  position: relative;
+  display: flex;
+  width: 108%;
+  height: 4.5rem;
+  border-radius: 0.5em;
+  overflow: hidden;
+}
+
+.input-select-expense::after {
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1.6rem;
+  background-color: var(--main-color);
+  transition: 0.25s all ease;
+  pointer-events: none;
+  height: 6rem;
+  display: flex;
+  justify-content: center;
+}
+
+.input-select-expense:hover::after {
+  color: #fff;
+}
+
+.input-select-expense select {
+  appearance: none;
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  flex: 1;
+  padding: 0 1em;
+  color: black;
+  background-color: #fff;
+  background-image: none;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
