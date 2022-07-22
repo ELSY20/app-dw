@@ -1,13 +1,14 @@
 import axios from "axios";
 
 export const IniciarSesion = async (username, password) => {
-  const rta = await axios.post("http://localhost:4000/login", {
-    username,
-    password,
-  });
-  console.log(rta);
+  try {
+    const rta = await axios.post("http://localhost:4000/login", {
+      username,
+      password,
+    });
+    console.log("action", rta)
+    return rta.data;
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
 };
-
-(() => {
-  IniciarSesion("matos", "1234");
-})();
