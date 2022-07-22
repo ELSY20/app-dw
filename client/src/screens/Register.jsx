@@ -29,7 +29,7 @@ const Register = () => {
       });
 
       setTimeout(function () {
-        window.location.href = "/login";
+        window.location.href = "/";
       }, 2000);
     }
   };
