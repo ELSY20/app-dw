@@ -45,7 +45,7 @@ const Login = () => {
       });
     }
 
-    if (code ==  404) {
+    if (code == 404) {
       swal(message, {
         icon: "warning",
         buttons: ["OK!"],
@@ -53,7 +53,9 @@ const Login = () => {
       });
     }
 
-    
+    if (code == 200) {
+      window.location.href = "/";
+    }
   };
 
   return (
