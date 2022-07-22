@@ -6,12 +6,18 @@ export const IniciarSesion = async (username, password) => {
       username,
       password,
     });
-    console.log("action", rta)
+    console.log("action", rta);
     return rta.data;
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
-export const registerUser = async (props) =>
-  await axios.post("http://localhost:4000/registrar", props);
+export const registerUser = async (props) => {
+  try {
+    const rta = await axios.post("http://localhost:4000/registrar", props);
+    return rta.data;
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};

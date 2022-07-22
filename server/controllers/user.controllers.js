@@ -25,20 +25,40 @@ export const LoginUsuario = async (req, res) => {
 
 export const crearUsuario = async (req, res) => {
   const { username, password } = req.body;
+  const [result] = await pool.query("SELECT * FROM usuario");
+  const user = result.filter((u) => {
+    if (u.username === username) {
+      return u;
+    }
+  });
   try {
-    const [result] = await pool.query("SELECT * FROM usuario");
-    const users = result.map((user) => user.username);
-    const respuesta = users.some((nombre) => nombre === username);
+    if (user.length < 1) {
+      const [result] = await pool.query(
+        "INSERT INTO usuario(username, password) VALUES (?, ?)",
+        [username, password]
+      );
+      res.send({ code: 200, id: result.insertId, username, password });
+    } else {
+      res.send({ code: 500, message: "usuario ya existe" });
+    }
+  } catch (error) {
+    return res.send({ message: error.message });
+  }
 
+  /*
+  const users = result.map((user) => user.username);
+  const respuesta = users.some((nombre) => nombre === username);
+  try {
     if (!respuesta) {
       const [result] = await pool.query(
         "INSERT INTO usuario(username, password) VALUES (?, ?)",
         [username, password]
       );
-      res.status(200).send({
+      res.send({
         id: result.insertId,
         username,
         password,
+        code: 200,
       });
     } else {
       return res.status(500).json({ message: error.message });
@@ -46,4 +66,5 @@ export const crearUsuario = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
+  */
 };

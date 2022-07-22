@@ -1,18 +1,37 @@
 import { useState } from "react";
 import { registerUser } from "../api/login.api";
+import swal from "sweetalert";
 import "../styles/register.css";
 
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  
-  const submitRegisterUserHandler = (e) => {
+  const submitRegisterUserHandler = async (e) => {
     e.preventDefault();
-    registerUser({
-      username: username,
-      password: password,
-    });
+    const rta = await registerUser({ username, password });
+    const { code } = rta;
+    console.log("CODIGO", code);
+
+    if (code == 500) {
+      swal("Usuario ya existe", {
+        icon: "warning",
+        buttons: ["OK!"],
+        dangerMode: true,
+      });
+    }
+
+    if (code == 200) {
+      swal("Registro exitoso", {
+        icon: "success",
+        buttons: ["OK!"],
+        dangerMode: true,
+      });
+
+      setTimeout(function () {
+        window.location.href = "/login";
+      }, 2000);
+    }
   };
 
   return (
@@ -37,7 +56,9 @@ const Register = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <button className="btn-login" onClick={submitRegisterUserHandler} >Registrar</button>
+            <button className="btn-login" onClick={submitRegisterUserHandler}>
+              Registrar
+            </button>
           </form>
         </div>
         <div className="login-footer">
