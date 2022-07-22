@@ -12,3 +12,6 @@ export const IniciarSesion = async (username, password) => {
     return res.status(500).json({ message: error.message });
   }
 };
+
+export const registerUser = async (props) =>
+  await axios.post("http://localhost:4000/registrar", props);

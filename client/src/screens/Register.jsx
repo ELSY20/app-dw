@@ -1,10 +1,19 @@
 import { useState } from "react";
+import { registerUser } from "../api/login.api";
 import "../styles/register.css";
 
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [nombre, setNombre] = useState("");
+
+  
+  const submitRegisterUserHandler = (e) => {
+    e.preventDefault();
+    registerUser({
+      username: username,
+      password: password,
+    });
+  };
 
   return (
     <div className="register-user">
@@ -14,13 +23,6 @@ const Register = () => {
         </div>
         <div className="form-register">
           <form>
-            <input
-              type="text"
-              value={nombre}
-              placeholder="Ingresa tu nombre"
-              onChange={(e) => setNombre(e.target.value)}
-            />
-
             <input
               type="text"
               value={username}
@@ -35,7 +37,7 @@ const Register = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <button className="btn-login">Registrar</button>
+            <button className="btn-login" onClick={submitRegisterUserHandler} >Registrar</button>
           </form>
         </div>
         <div className="login-footer">
