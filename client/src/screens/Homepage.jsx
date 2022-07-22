@@ -61,7 +61,7 @@ const Homepage = () => {
                   <th>Responsable</th>
                   <th>Fecha</th>
                   <th>Id programa</th>
-                  <th>Registrar Compromiso</th>
+                  <th>Compromiso</th>
                 </tr>
               </thead>
               <tbody>
@@ -74,7 +74,7 @@ const Homepage = () => {
                     <td>{e.fecha}</td>
                     <td>{e.id_programa}</td>
                     <td>
-                      <a href="#">Ir a registar comprimiso</a>
+                      <a href="#">Ver comprimiso</a>
                     </td>
                   </tr>
                 ))}
