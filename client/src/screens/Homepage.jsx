@@ -57,7 +57,7 @@ const Homepage = () => {
                 <tr>
                   <th>Id</th>
                   <th>Asunto</th>
-                  <th className="desc">Desccripcion</th>
+                  <th className="desc">Descripcion</th>
                   <th>Responsable</th>
                   <th>Fecha</th>
                   <th>Id programa</th>
