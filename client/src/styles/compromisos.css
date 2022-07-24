@@ -1,0 +1,41 @@
+.input-select {
+    position: relative;
+    display: flex;
+    width: 20rem;
+   padding: 1rem;
+    border-radius: 0.5em;
+    overflow: hidden;
+  }
+  
+  .input-select::after {
+    content: "\25BC";
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1.6rem;
+    background-color: var(--main-color);
+    transition: 0.25s all ease;
+    pointer-events: none;
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .input-select:hover::after {
+    color: #fff;
+  }
+  
+  .input-select select {
+    appearance: none;
+    outline: 0;
+    border: 0;
+    box-shadow: none;
+    flex: 1;
+    padding:.6rem;
+    color: black;
+    background-color: #fff;
+    background-image: none;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: .3rem;
+  }
