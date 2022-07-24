@@ -62,10 +62,10 @@ const Homepage = () => {
     window.location.reload();
   };
 
-   //proceso de eliminar
-   const deleteHandler = (id) => {
+  //proceso de eliminar
+  const deleteHandler = (id) => {
     deleteActaRequest(id);
-   window.location.reload();
+    window.location.reload();
   };
 
   useEffect(() => {

@@ -99,7 +99,7 @@ const Compromiso = () => {
             <div className="grupo">
               <a href="/home" className="return">
                 <i className="bx bx-left-arrow-alt"></i>
-                  <h3>Volver a inicio</h3>
+                <h3>Volver a inicio</h3>
               </a>
 
               <button
